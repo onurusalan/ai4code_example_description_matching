@@ -1,0 +1,697 @@
+
+        <!DOCTYPE html>
+        <html lang="tr">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>AI4Code Eşleştirme Örnekleri ve Performans Metrikleri</title>
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
+            <style>
+                /* Mevcut stiller korundu */
+                body { 
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                    margin: 40px auto;
+                    max-width: 1200px;
+                    padding: 0 20px;
+                    line-height: 1.6;
+                    background-color: #f8f9fa;
+                }
+                .example { 
+                    border: 1px solid #e9ecef;
+                    padding: 25px;
+                    margin: 30px 0;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+                    background-color: white;
+                }
+                .correct { 
+                    border-left: 6px solid #28a745;
+                }
+                .incorrect { 
+                    border-left: 6px solid #dc3545;
+                }
+                .markdown-content {
+                    background-color: #f8f9fa;
+                    padding: 20px;
+                    border-radius: 8px;
+                    margin: 15px 0;
+                    font-size: 16px;
+                }
+                pre[class*="language-"] {
+                    padding: 20px;
+                    margin: 15px 0;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    background-color: #282c34;
+                }
+                h1 {
+                    color: #343a40;
+                    text-align: center;
+                    margin: 40px 0;
+                    font-size: 2.5em;
+                }
+                h2 {
+                    color: #495057;
+                    border-bottom: 2px solid #e9ecef;
+                    padding-bottom: 10px;
+                    margin: 40px 0 20px;
+                }
+                h3 {
+                    color: #6c757d;
+                    margin: 20px 0 10px;
+                }
+                .status {
+                    display: inline-block;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    margin-top: 15px;
+                }
+                .status.correct {
+                    background-color: #d4edda;
+                    color: #155724;
+                    border: 1px solid #c3e6cb;
+                }
+                .status.incorrect {
+                    background-color: #f8d7da;
+                    color: #721c24;
+                    border: 1px solid #f5c6cb;
+                }
+                
+                /* Yeni stiller eklendi */
+                .metrics-container {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                    margin: 30px 0;
+                }
+                
+                .metric-card {
+                    background: white;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    text-align: center;
+                }
+                
+                .metric-value {
+                    font-size: 2em;
+                    font-weight: 600;
+                    color: #2c3e50;
+                    margin: 10px 0;
+                }
+                
+                .metric-label {
+                    color: #666;
+                    font-size: 0.9em;
+                }
+                
+                .confidence-bar {
+                    height: 6px;
+                    background: #e9ecef;
+                    border-radius: 3px;
+                    margin-top: 10px;
+                }
+                
+                .confidence-level {
+                    height: 100%;
+                    border-radius: 3px;
+                    transition: width 0.3s ease;
+                }
+                
+                .high-confidence {
+                    background: #2ecc71;
+                }
+                
+                .medium-confidence {
+                    background: #f1c40f;
+                }
+                
+                .low-confidence {
+                    background: #e74c3c;
+                }
+            </style>
+        </head>
+        <body>
+        <div class="container">
+            <h1>📊 Model Performans Analizi</h1>
+            
+            <!-- Performans Metrikleri -->
+            <div class="metrics-container">
+                <!-- Metrikler dinamik olarak eklenecek -->
+            </div>
+            
+            <h2>✅ Doğru Eşleşme Örnekleri</h2>
+            <!-- Doğru eşleşmeler -->
+            
+            <h2>❌ Yanlış Eşleşme Örnekleri</h2>
+            <!-- Yanlış eşleşmeler -->
+        </div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markdown.min.js"></script>
+        </body>
+        </html>
+        <div class="metrics-container">
+                    <div class="metric-card">
+                        <div class="metric-label">Doğruluk (Accuracy)</div>
+                        <div class="metric-value">0.924</div>
+                    </div>
+                
+                    <div class="metric-card">
+                        <div class="metric-label">Hassasiyet (Precision)</div>
+                        <div class="metric-value">0.922</div>
+                    </div>
+                
+                    <div class="metric-card">
+                        <div class="metric-label">Duyarlılık (Recall)</div>
+                        <div class="metric-value">0.929</div>
+                    </div>
+                
+                    <div class="metric-card">
+                        <div class="metric-label">F1 Skoru</div>
+                        <div class="metric-value">0.925</div>
+                    </div>
+                </div><h2>✅ Doğru Eşleşme Örnekleri</h2>
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">**Lets work out with the Cabin numbers**</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">import pandas as pd
+import numpy as np
+
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import accuracy_score</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.11812931299209595%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.12%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">### Evaluate the Gift Shop profit</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># Things to use
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.13496051728725433%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.13%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content"><font color="blue" >
+*Decision trees classify the examples by sorting them down the tree from the root to some leaf/terminal node, with the leaf/terminal node providing the classification of the example.
+
+*Each node in the tree acts as a test case for some attribute, and each edge descending from the node corresponds to the possible answers to the test case. This process is recursive in nature and is repeated for every subtree rooted at the new node.
+
+*Decision trees use multiple algorithms to decide to split a node into two or more sub-nodes. The creation of sub-nodes increases the homogeneity of resultant sub-nodes. In other words, we can say that the purity of the node increases with respect to the target variable. The decision tree splits the nodes on all available variables and then selects the split which results in most homogeneous sub-nodes.</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+# Input data files are available in the read-only "../input/" directory
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# You can write up to 5GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save &amp; Run All" 
+# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.13537366688251495%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.14%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">**In this numpy matrix array, each row represents a principal component, Principal axes in feature space, representing the directions of maximum variance in the data. The components are sorted by explained_variance_.
+We can visualize this relationship with a heatmap:**</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+%matplotlib inline</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.1398405134677887%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.14%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">##  Set up network parameters</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">from keras.layers import Dense, Input
+from keras.layers import Conv2D, Flatten, Lambda
+from keras.layers import Reshape, Conv2DTranspose
+from keras.models import Model
+from keras.datasets import mnist
+from keras.losses import mse, binary_crossentropy
+from keras import backend as K
+
+import numpy as np
+import matplotlib.pyplot as plt
+import argparse
+import os</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.14050523936748505%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.14%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content"># **1.9 Dealing with the missing values**</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">import numpy as np 
+import pandas as pd 
+import os
+import missingno as msno
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
+from scipy import stats
+from sklearn.linear_model import LogisticRegression
+from imblearn.over_sampling import SMOTE
+from collections import Counter
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score, f1_score
+from xgboost import XGBClassifier
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.naive_bayes import GaussianNB
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestRegressor
+import warnings
+
+warnings.filterwarnings("ignore")
+</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.14435076713562012%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.14%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">По графикам можно заметить что почти для каждого из измерений тренды для классов различаются. Это значит, что даже по нескольким измерениям можно достаточно надёжно предсказать класс. Также можно заметить однозначную зависимость эксцентриситета и соотношения сторон - эти величины зависимы или зависят от одного и того же набора других величин.</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># Импорт основных библиотек
+import numpy as np
+import pandas as pd
+
+from matplotlib import pyplot as plt
+import seaborn as sns
+
+# Настройка стиля графиков
+sns.set_style("darkgrid")
+sns.set_palette('muted')
+
+%matplotlib inline</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.15562574565410614%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.16%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">### Games table</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">#load libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt   #for plotting
+from sklearn import tree          #for decision trees
+from sklearn import preprocessing</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.15752750635147095%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.16%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">Flulaştırma işleminden sonra kenar ve köşelerin çizdirilmesi işlemi. Aşağıda görüldüğü gibi flu görüntüde kenar ve köşeler daha net çıkmaktadır. Resmin orjinal hali kullanılsa görüntü arka planındaki diğer objeler veya araca yansıyan gölgeler vs gibi bunlarında kenar ve köşeleri çizilecek böylece daha karmaşık bir görüntü elde edilecek.
+
+Kenar köşe çizdirmek için yine cv2 içindeki Canny'i kullanıyorum. Canny fonksiyonu parametre olarak bir görüntü, minimum eşik değeri ve maksimum eşik değeri alıyor. Minimum ve maksimum eşik değerlerinin anlamı şu: çizilen bütün kenarlar içinden hangilerinin gerçek kenar hangilerinin ise gerçek olmayan kenarlar olduğunu tespit ediyor. Örneğin resmin arka planında bir sürü ağaç bulunmakta eğer max eşik değerini küçük tutarsak görüntü arka planında daha fazla kenar bulacak bu da görüntü daha karışık hale sokacaktır aynı zamanda max eşik değerini çok yüksek tutmak plaka yerinde herhangi bir kenar köşe bulamamasına neden olabilir.
+
+Eğer kenar-köşe yoğunlu max eşiğin üzerinde ise bu kesinlikle kenardır, eğer kenar-köşe yoğunluğu min eşik değerinin altında ise burası kesinlikle kenar değildir mantığı ile çalışmaktadır.
+
+Canny --> [https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_canny/py_canny.html](http://)</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+# Input data files are available in the read-only "../input/" directory
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save &amp; Run All" 
+# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.1610245555639267%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.16%)
+                        </div>
+                    </div>
+                
+                    <div class="example correct">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">This Code is from Hands-on Machine learning with scikit-learn book.</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+# Input data files are available in the read-only "../input/" directory
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# You can write up to 5GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save &amp; Run All" 
+# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.1661612093448639%"></div>
+                        </div>
+                        <div class="status correct">
+                            ✓ Doğru Eşleşme (Güven: 0.17%)
+                        </div>
+                    </div>
+                <h2>❌ Yanlış Eşleşme Örnekleri</h2>
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">* Here we set a threshold of 0.5 
+* People having this score greater than 0.5 means a probability of leaving the bank
+* Hence we apply a trick here that if values are less than 0.5 then it would return False and if greater than 0.5 it would return True
+* Then we plot the Confusion Matrix for the same</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">import pandas as pd
+import warnings  
+warnings.filterwarnings('ignore') # to ignore the warnings</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level low-confidence" style="width: 0.6113103032112122%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✗ Eşleşmez (Güven: 0.61%),
+                            Gerçek Değer: ✓ Eşleşir
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content"># The most successful IPL team
+
+In a game of sports, every team competes for victory. Hence, the team that has registered the most number of victories is the most successful.</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+# Input data files are available in the read-only "../input/" directory
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save &amp; Run All" 
+# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 99.33667755126953%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 99.34%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content"># fin</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># !conda install -c fastai fastai --yes #using latest 1.0.48 as 1.0.46 learner will have read-only issue</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 99.15796661376953%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 99.16%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content"><div class="alert alert-block alert-danger">  
+<h2><center><strong>As we can see from the graphs, features has good correlation with Pclass</strong></center></h2>
+        
+</div></div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">import numpy as np 
+import pandas as pd 
+import seaborn as sns 
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import KFold
+from sklearn.metrics import confusion_matrix, classification_report
+from mlxtend.plotting import plot_confusion_matrix
+from sklearn.model_selection import KFold
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+%matplotlib inline
+
+import warnings
+warnings.filterwarnings("ignore")</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 99.08042907714844%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 99.08%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">1.1 Univariate Analysis</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load in 
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import matplotlib.pyplot as plt
+
+# Input data files are available in the "../input/" directory.
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# Any results you write to the current directory are saved as output.</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 98.80406188964844%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 98.80%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content"># Inference from above scatterplot
+1. Diamonds with carat range between 2-3 & cut betwen ideal & premium fetch higher price
+2. Diamonds with carat range between 2-3 & colors 'i' & 'j' fetch higher price
+3. Diamonds with carat range between 2-3 & clarity "SI2 & SI1" fetch higher price
+4. Diamonds with depth range between 60-65 & cut good, very good & Ideal fetch higher price
+5. Diamonds with table range between 60-70 & cut good, premium fetch higher price
+6. Diamonds with table range between 60-70 & color "I" fetch higher price</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+# Input data files are available in the read-only "../input/" directory
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save &amp; Run All" 
+# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 98.7920150756836%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 98.79%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">- The distributions by sex are similar
+
+- There are extreme values (outliers?)</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># Import packages
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+import warnings
+warnings.filterwarnings("ignore")
+
+sns.set(style="white", font_scale=1.2)
+</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 98.76333618164062%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 98.76%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">### Spectogram</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python"># This Python 3 environment comes with many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# For example, here's several helpful packages to load
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+# Input data files are available in the read-only "../input/" directory
+# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
+
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save &amp; Run All" 
+# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 98.58568572998047%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 98.59%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">### Data Cleaning</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">import os
+import re
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import seaborn as sns</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 98.54447174072266%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 98.54%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
+                    <div class="example incorrect">
+                        <h3>Markdown:</h3>
+                        <div class="markdown-content">### 주말별 target 분포 확인</div>
+                        <h3>Kod:</h3>
+                        <pre><code class="language-python">import numpy as np 
+import pandas as pd 
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+from scipy.stats import skew, norm
+from sklearn.cluster import KMeans
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))</code></pre>
+                        <div class="confidence-bar">
+                            <div class="confidence-level high-confidence" style="width: 98.51567840576172%"></div>
+                        </div>
+                        <div class="status incorrect">
+                            Model Tahmini: ✓ Eşleşir (Güven: 98.52%),
+                            Gerçek Değer: ✗ Eşleşmez
+                        </div>
+                    </div>
+                
